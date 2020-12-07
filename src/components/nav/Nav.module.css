@@ -1,0 +1,12 @@
+.nav{
+    grid-area: nav;
+    background-color: powderblue;
+}
+
+.item {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+

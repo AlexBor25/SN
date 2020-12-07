@@ -1,0 +1,8 @@
+.content {
+    grid-area: content;
+    background-color: gainsboro;
+}
+
+.background {
+    width: 100%;
+}
