@@ -1,4 +1,3 @@
-import style from './MyPosts.module.css';
 import Post from "./Post/Post";
 
 function MyPosts() {
@@ -14,8 +13,8 @@ function MyPosts() {
           <button>Remove</button>
         </div>
         <div>
-          <Post />
-          <Post />
+          <Post postMessage="Начал учить Реакт" likeCount="15"/>
+          <Post postMessage="Скоро собираюсь на собес" likeCount="10"/>
         </div>
       </div>
   )

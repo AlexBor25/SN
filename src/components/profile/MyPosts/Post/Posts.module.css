@@ -1,9 +1,9 @@
-.item{
-    color: grey;
-}
-
-.item img {
+.avatar  {
     width: 50px;
     height: 50px;
     border-radius: 100%;
+}
+.like {
+    width: 25px;
+    height: 25px;
 }
