@@ -1,20 +1,23 @@
 import Post from "./Post/Post";
+import style from './MyPosts.module.css';
 
-function MyPosts() {
+function MyPosts(props) {
+
+  const postElements = props.posts
+    .map(post => <Post postMessage={post.message} likesCount={post.likesCount} />);
+
   return (
-      <div>
-        My posts
+      <div className={style.posts}>
         <div>
-          <div>Add New Post</div>
+          <h3>Add New Post</h3>
           <div>
             <input type="text"/>
           </div>
           <button>Add Post</button>
-          <button>Remove</button>
         </div>
+        <h3 className={style.title}>My posts</h3>
         <div>
-          <Post postMessage="Начал учить Реакт" likeCount="15"/>
-          <Post postMessage="Скоро собираюсь на собес" likeCount="10"/>
+          {postElements}
         </div>
       </div>
   )
