@@ -3,7 +3,7 @@ function News(props) {
     <div>
       У вас пока нету новостей!
     </div>
-  )
-}
+  );
+};
 
 export default News;

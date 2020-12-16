@@ -3,7 +3,7 @@ function Settings(props) {
     <div>
       Настройки учетной записи
     </div>
-  )
-}
+  );
+};
 
 export default Settings;
