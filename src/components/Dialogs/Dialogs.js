@@ -5,10 +5,10 @@ import Message from "./Message/Message";
 
 function Dialogs(props) {
 
-  const dialogsElements = props.dialogs
-    .map(dialog => <DialogItem name={dialog.name} id={dialog.id} /> );
+  const dialogsElements = props.dialogs.dialogsData
+    .map(dialog => <DialogItem name={dialog.name} id={dialog.id} img={dialog.img} /> );
 
-  const messagesElements = props.messages
+  const messagesElements = props.dialogs.messagesData
     .map(message => <Message dialogMessage={message.message}/>);
 
   return (
@@ -20,7 +20,7 @@ function Dialogs(props) {
         {messagesElements}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Dialogs;

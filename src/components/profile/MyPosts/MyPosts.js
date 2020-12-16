@@ -10,17 +10,17 @@ function MyPosts(props) {
       <div className={style.posts}>
         <div>
           <h3>Add New Post</h3>
-          <div>
-            <input type="text"/>
+          <div className={style.newPost}>
+            <input type="text" placeholder="Что у вас нового?"/>
+            <button>Add Post</button>
           </div>
-          <button>Add Post</button>
         </div>
         <h3 className={style.title}>My posts</h3>
         <div>
           {postElements}
         </div>
       </div>
-  )
-}
+  );
+};
 
 export default MyPosts;

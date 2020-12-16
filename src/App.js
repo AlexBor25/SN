@@ -5,23 +5,23 @@ import Profile from "./components/profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import Settings from "./components/Settings/Settings";
-import News from "./components/News.js/News";
+import News from "./components/News/News";
 
 function App(props) {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
         <Header />
-        <Nav />
+        <Nav friends={props.state.sidebar} />
         <div className="app-wrapper-content">
-          <Route path='/profile' render={() => <Profile posts={props.post} />} />
-          <Route path='/dialogs' render={() => <Dialogs dialogs={props.dialogs} messages={props.message} />} />
+          <Route path='/profile' render={() => <Profile posts={props.state.profilePage} />} />
+          <Route path='/dialogs' render={() => <Dialogs dialogs={props.state.dialogsPage}  />} />
           <Route path='/news' component={News} />
           <Route path='/settings' component={Settings} />
         </div>
       </div>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
