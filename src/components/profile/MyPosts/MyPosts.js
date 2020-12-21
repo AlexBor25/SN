@@ -23,11 +23,16 @@ function MyPosts(props) {
         <div>
           <h3>Add New Post</h3>
           <div className={style.newPost}>
+<<<<<<< HEAD
             <input onChange={onPostChange}
                    ref={newPostElement} type="text"
                    placeholder="Что у вас нового?"
                    value={props.newPostText}/>
             <button onClick={addPost}>Add Post</button>
+=======
+            <input type="text" placeholder="Что у вас нового?"/>
+            <button>Add Post</button>
+>>>>>>> ca25837e2c1584e7a04fd17e3b067b51ef460af2
           </div>
         </div>
         <h3 className={style.title}>My posts</h3>
