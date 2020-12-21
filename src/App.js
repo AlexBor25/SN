@@ -14,8 +14,14 @@ function App(props) {
         <Header />
         <Nav friends={props.state.sidebar} />
         <div className="app-wrapper-content">
-          <Route path='/profile' render={() => <Profile posts={props.state.profilePage} />} />
-          <Route path='/dialogs' render={() => <Dialogs dialogs={props.state.dialogsPage}  />} />
+          <Route path='/profile' render={() => <Profile
+            posts={props.state.profilePage}
+            addPost={props.addPost}
+            updateNewPostText={props.updateNewPostText} />} />
+          <Route path='/dialogs' render={() => <Dialogs
+            dialogs={props.state.dialogsPage}
+            addNewMsg={props.addNewMsg}
+            updateNewMsg={props.updateNewMsg} />} />
           <Route path='/news' component={News} />
           <Route path='/settings' component={Settings} />
         </div>

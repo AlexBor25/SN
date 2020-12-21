@@ -9,7 +9,9 @@ function Dialogs(props) {
     .map(dialog => <DialogItem name={dialog.name} id={dialog.id} img={dialog.img} /> );
 
   const messagesElements = props.dialogs.messagesData
-    .map(message => <Message dialogMessage={message.message}/>);
+    .map(message => <Message dialogMessage={message.message}
+        addNewMsg={props.addNewMsg}
+        updateNewMsg={props.updateNewMsg} />);
 
   return (
     <div className={style.dialogs}>
