@@ -10,8 +10,7 @@ function Dialogs(props) {
 
   const messagesElements = props.dialogs.messagesData
     .map(message => <Message dialogMessage={message.message}
-        addNewMsg={props.addNewMsg}
-        updateNewMsg={props.updateNewMsg} />);
+                             dispatch={props.dispatch} />);
 
   return (
     <div className={style.dialogs}>
