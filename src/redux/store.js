@@ -1,7 +1,6 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const ADD_NEW_MSG = 'ADD-NEW-MSG';
-const UPDATE_NEW_MSG = 'UPDATE-NEW-MSG';
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
 
 
 const store = {
@@ -48,48 +47,16 @@ const store = {
     return this._state;
   },
 
-  subscribe (observer) {
+  subscribe(observer) {
     this._rerenderTree = observer;
   },
 
   dispatch(action) {
-    if(action.type === ADD_POST) {
-      const newPost = {
-        id: 3,
-        message: this._state.profilePage.newPostText,
-        likesCount: 0,
-      };
-      this._state.profilePage.postData.push(newPost);
-      this._state.profilePage.newPostText = '';
-      this._rerenderTree(this._state);
-    } else if(action.type === UPDATE_NEW_POST_TEXT) {
-      this._state.profilePage.newPostText = action.newText;
-      this._rerenderTree(this._state);
-    } else if(action.type === ADD_NEW_MSG) {
-      const newMsg = {
-        id: 4,
-        message: this._state.dialogsPage.newMsg,
-      };
-      this._state.dialogsPage.messagesData.push(newMsg);
-      this._state.dialogsPage.newMsg = '';
-      this._rerenderTree(this._state);
-    } else if(action.type === UPDATE_NEW_MSG) {
-      this._state.dialogsPage.newMsg = action.newText;
-      this._rerenderTree(this._state);
-    }
-  }
-};
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+    this._state.sidebar = sidebarReducer(this._state.sidebar, action);
 
-export const addPostActionCreator = () => {
-  return {
-    type: ADD_POST,
-  }
-};
-
-export const changePostActionCreator = (text) => {
-  return {
-    type: UPDATE_NEW_POST_TEXT,
-    newText: text,
+    this._rerenderTree(this._state);
   }
 };
 
