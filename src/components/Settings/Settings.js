@@ -1,4 +1,6 @@
-function Settings(props) {
+import React from "react";
+
+const Settings = (props) => {
   return (
     <div>
       Настройки учетной записи

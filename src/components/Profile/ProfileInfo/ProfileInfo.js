@@ -1,6 +1,7 @@
 import style from './ProfileInfo.module.css';
+import React from "react";
 
-function ProfileInfo() {
+const ProfileInfo = () => {
   return (
     <div>
       <div>

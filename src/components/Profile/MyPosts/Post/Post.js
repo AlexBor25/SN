@@ -1,6 +1,6 @@
 import style from "./Posts.module.css";
 
-function Post(props) {
+const Post = (props) => {
   return (
     <div className={style.mt15}>
       <img className={style.avatar} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8M61RWYwwUROL8h9uwEM53mx-owmYwcWT5g&usqp=CAU" alt=""/>

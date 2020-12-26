@@ -1,9 +1,9 @@
 import style from './Friends.module.css';
 import FriendItem from "./FriendItem/FriendItem";
+import React from "react";
 
-function Friends(props) {
-
-  const friends = props.friend.friends.map(friend => <FriendItem
+const Friends = (props) => {
+  const friends = props.friends.map(friend => <FriendItem
     name={friend.name}
     id={friend.id}
     img={friend.img}/>);

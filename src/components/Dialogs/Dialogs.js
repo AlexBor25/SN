@@ -1,16 +1,26 @@
+import React from 'react';
 import style from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
 
-function Dialogs(props) {
-
+const Dialogs = (props) => {
   const dialogsElements = props.dialogs.dialogsData
     .map(dialog => <DialogItem name={dialog.name} id={dialog.id} img={dialog.img} /> );
 
   const messagesElements = props.dialogs.messagesData
-    .map(message => <Message dialogMessage={message.message}
-                             dispatch={props.dispatch} />);
+    .map(message => <Message dialogMessage={message.message} />);
+
+  const inpValue = React.createRef();
+
+  const addNewMsg = () => {
+    props.addNewMsg();
+  };
+
+  const updateNewMsg = () => {
+    let msg = inpValue.current.value;
+    props.updateNewMsg(msg);
+  };
 
   return (
     <div className={style.dialogs}>
@@ -19,6 +29,10 @@ function Dialogs(props) {
       </div>
       <div className={style.messages}>
         {messagesElements}
+        <div>
+          <input ref={inpValue} type="text" onChange={updateNewMsg} value={props.dialogs.newMsg} />
+          <button onClick={addNewMsg}>Send msg</button>
+        </div>
       </div>
     </div>
   );

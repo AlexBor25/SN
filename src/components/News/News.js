@@ -1,4 +1,4 @@
-function News(props) {
+const News = (props) => {
   return (
     <div>
       У вас пока нету новостей!

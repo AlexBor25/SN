@@ -1,8 +1,9 @@
 import style from './Nav.module.css';
 import {NavLink} from "react-router-dom";
-import Friends from "../Friends/Friends";
+import FriendsContainer from "../Friends/FriendsContainer";
+import React from "react";
 
-function Nav(props) {
+const Nav = (props) => {
   return (
     <nav className={style.nav}>
       <div className={style.hover}>
@@ -19,7 +20,7 @@ function Nav(props) {
       </div>
       <div>
         <h2 className={style.fz}>Friends</h2>
-        <Friends friend={props.friends}/>
+        <FriendsContainer/>
       </div>
     </nav>
   );
