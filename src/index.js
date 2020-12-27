@@ -7,15 +7,9 @@ import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 
 
-function rerenderTree() {
-  ReactDOM.render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>, document.getElementById('root'));
-}
-
-rerenderTree(store.getState());
-
-store.subscribe(rerenderTree);
+ReactDOM.render(
+  <BrowserRouter>
+    <Provider store={store}>
+      <App/>
+    </Provider>
+  </BrowserRouter>, document.getElementById('root'));

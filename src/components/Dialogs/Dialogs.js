@@ -6,10 +6,10 @@ import Message from "./Message/Message";
 
 const Dialogs = (props) => {
   const dialogsElements = props.dialogs.dialogsData
-    .map(dialog => <DialogItem name={dialog.name} id={dialog.id} img={dialog.img} /> );
+    .map(dialog => <DialogItem name={dialog.name} key={dialog.id} id={dialog.id} img={dialog.img} /> );
 
   const messagesElements = props.dialogs.messagesData
-    .map(message => <Message dialogMessage={message.message} />);
+    .map(message => <Message dialogMessage={message.message} key={message.id} />);
 
   const inpValue = React.createRef();
 

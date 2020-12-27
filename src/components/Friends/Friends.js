@@ -6,6 +6,7 @@ const Friends = (props) => {
   const friends = props.friends.map(friend => <FriendItem
     name={friend.name}
     id={friend.id}
+    key={friend.id}
     img={friend.img}/>);
 
   return (
