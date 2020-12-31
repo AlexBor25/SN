@@ -18,8 +18,11 @@ const Nav = (props) => {
       <div className={style.hover}>
         <NavLink className={style.item} activeClassName={style.activeLink} to="/settings">Settings</NavLink>
       </div>
+      <div className={style.hover}>
+        <NavLink className={style.item} activeClassName={style.activeLink} to="/users">Users</NavLink>
+      </div>
       <div>
-        <h2 className={style.fz}>Friends</h2>
+        <h2 className={style.fz}>В сети</h2>
         <FriendsContainer/>
       </div>
     </nav>
