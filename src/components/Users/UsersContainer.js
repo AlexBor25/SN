@@ -35,12 +35,12 @@ class UsersContainer extends React.Component {
     return <>
       {this.props.isLoading ? <Preloader /> : null}
       <Users follow={this.props.follow}
-                  unfollow={this.props.unfollow}
-                  totalUsersCount={this.props.totalUsersCount}
-                  pageSize={this.props.pageSize}
-                  currentPage={this.props.currentPage}
-                  onPageChanged={this.onPageChanged}
-                  users={this.props.users}/>
+             unfollow={this.props.unfollow}
+             totalUsersCount={this.props.totalUsersCount}
+             pageSize={this.props.pageSize}
+             currentPage={this.props.currentPage}
+             onPageChanged={this.onPageChanged}
+             users={this.props.users}/>
     </>
   }
 }

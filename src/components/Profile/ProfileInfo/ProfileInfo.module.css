@@ -1,8 +1,17 @@
+.content {
+    display: flex;
+}
+
 .background {
     width: 100%;
     height: 300px;
 }
 
-.descr{
+.photo {
     padding: 10px;
+}
+
+.info {
+    padding: 10px;
+    font-size: 30px;
 }

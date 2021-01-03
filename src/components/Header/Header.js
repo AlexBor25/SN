@@ -1,10 +1,17 @@
 import style from './Header.module.css';
 import React from "react";
+import {NavLink} from "react-router-dom";
+import logo from '../../assets/img/logo192.png';
 
-const Header = () => {
+const Header = (props) => {
   return (
     <header className={style.header}>
-      <img className={style.logo} src="https://www.handmadeschool.ru/uploads/posts/2016-08/1470233229_snimok-ekrana-2015-03-19-v-13.03.39.png" alt=""/>
+      <NavLink to={'/profile'}>
+        <img className={style.logo} src={logo} alt="logo"/>
+      </NavLink>
+      <div className={style.loginBlock}>
+        {props.isAuth ? props.login : <NavLink to={'/login'}>Войти</NavLink>}
+      </div>
     </header>
   );
 };
