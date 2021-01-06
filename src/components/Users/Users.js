@@ -14,13 +14,12 @@ const Users = (props) => {
 
   return (
     <div>
-      <div>{pages.map(page => {
-        return <button key={page.id} onClick={() => {
+      <div>{pages.map(page => <button key={page.id} onClick={() => {
           props.onPageChanged(page)
         }} className={(props.currentPage === page && style.active).toString()}>
           {page}
         </button>
-      })}
+      )}
       </div>
       {
         props.users.map(user => <div key={user.id}>
@@ -30,13 +29,12 @@ const Users = (props) => {
             </NavLink>
           </div>
           <div>
-            {user.followed
-              ? <button onClick={() => {
-                props.unfollow(user.id)
-              }}>Отписаться</button>
-              : <button onClick={() => {
-                props.follow(user.id)
-              }}>Подписаться</button>
+            {
+              user.followed
+                ? <button disabled={props.disabledBtn.some(id => id === user.id)}
+                          onClick={() => {props.unfollow(user.id);}}>Отписаться</button>
+                : <button disabled={props.disabledBtn.some(id => id === user.id)}
+                          onClick={() => {props.follow(user.id);}}>Подписаться</button>
             }
           </div>
           <div>{user.name}</div>

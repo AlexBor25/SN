@@ -1,34 +1,20 @@
 import Users from "./Users";
 import {connect} from "react-redux";
 import {
-  followAction, setCurrentPageAction,
-  setUsersAction, setUserTotalCountAction, toggleIsLoadingAction,
-  unfollowAction
-} from "../../redux/users-reducer";
-import axios from "axios";
+  follow, getUsersThunk, setCurrentPage,
+  toggleDisabledBtn, unfollow } from "../../redux/users-reducer";
 import React from 'react';
 import Preloader from "../Preloader/Preloader";
 
 class UsersContainer extends React.Component {
 
   componentDidMount() {
-    this.props.toggleIsLoading(true);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-      .then(response => {
-        this.props.toggleIsLoading(false);
-        this.props.setUsers(response.data.items);
-        this.props.setTotalUsersCount(response.data.totalCount);
-      });
+    this.props.getUsersThunk(this.props.currentPage, this.props.pageSize);
   }
 
   onPageChanged = (pageNumber) => {
-    this.props.setCurrentPage(pageNumber);
-    this.props.toggleIsLoading(true);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-      .then(response => {
-        this.props.toggleIsLoading(false);
-        this.props.setUsers(response.data.items);
-      });
+    this.props.setCurrentPage(pageNumber)
+    this.props.getUsersThunk(pageNumber, this.props.pageSize);
   }
 
   render() {
@@ -40,7 +26,8 @@ class UsersContainer extends React.Component {
              pageSize={this.props.pageSize}
              currentPage={this.props.currentPage}
              onPageChanged={this.onPageChanged}
-             users={this.props.users}/>
+             users={this.props.users}
+             disabledBtn={this.props.disabledBtn}/>
     </>
   }
 }
@@ -51,15 +38,11 @@ const mapStateToProps = (state) => {
     pageSize: state.usersPage.pageSize,
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
-    isLoading: state.usersPage.isLoading
+    isLoading: state.usersPage.isLoading,
+    disabledBtn: state.usersPage.disabledBtn
   }
 };
 
 export default connect(mapStateToProps, {
-  follow: followAction,
-  unfollow: unfollowAction,
-  setUsers: setUsersAction,
-  setCurrentPage: setCurrentPageAction,
-  setTotalUsersCount: setUserTotalCountAction,
-  toggleIsLoading: toggleIsLoadingAction
+  follow, unfollow, setCurrentPage, toggleDisabledBtn, getUsersThunk
 }) (UsersContainer);
