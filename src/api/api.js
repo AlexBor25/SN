@@ -27,3 +27,13 @@ export const auth = () => {
 export const setUsers = (id) => {
   return API.get(`profile/${id}`).then(response => response.data);
 };
+
+export const getUserStatus = (id) => {
+  return API.get(`profile/status/${id}`).then(response => response.data);
+};
+
+export const updateUserStatus = (status) => {
+  return API.put(`profile/status`, {
+    status: status
+  }).then(response => response.data);
+};
