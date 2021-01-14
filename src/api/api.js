@@ -37,3 +37,13 @@ export const updateUserStatus = (status) => {
     status: status
   }).then(response => response.data);
 };
+
+export const signIn = (email, password, rememberMe = false) => {
+  return API.post(`auth/login`, {
+    email, password, rememberMe
+  }).then(response => response.data);
+};
+
+export const signOut = () => {
+  return API.delete(`auth/login`).then(response => response.data);
+};
