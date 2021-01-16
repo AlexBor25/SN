@@ -1,55 +1,42 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 
-class ProfileStatus extends React.Component {
-  state = {
-    editMode: false,
-    status: this.props.status
-  }
+const ProfileStatus = (props) => {
 
-  onEditMode = () => {
-    this.setState({
-      editMode: true
-    })
-  }
+  const [editMode, setEditMode] = useState(false);
+  const [status, setStatus] = useState(props.status);
 
-  offEditMode = () => {
-    this.setState({
-      editMode: false
-    })
-    this.props.updateStatus(this.state.status);
-  }
+  useEffect(() => {
+    setStatus(props.status)
+  }, [props.status]);
 
-  onStatusChange = (e) => {
-    this.setState({
-      status: e.currentTarget.value
-    });
-  }
-
-  componentDidUpdate(prevProps) {
-    if(prevProps.status !== this.props.status) {
-      this.setState({
-        status: this.props.status
-      })
+  const toggleEditMode = () => {
+    if (!editMode) {
+      setEditMode(true)
+    } else {
+      setEditMode(false)
+      props.updateStatus(status)
     }
-  }
-
-  render() {
-    return (
-      <div>
-        {
-          !this.state.editMode
-            ? <div>
-              <span onDoubleClick={this.onEditMode} >{this.props.status || 'User dont have status'}</span>
-            </div>
-            : <div>
-                <input autoFocus={true} onBlur={this.offEditMode}
-                       value={this.state.status}
-                       onChange={this.onStatusChange}/>
-            </div>
-        }
-      </div>
-    );
   };
+
+  const onStatusChange = (e) => {
+    setStatus(e.currentTarget.value)
+  };
+
+  return (
+    <div>
+      {
+        !editMode
+          ? <div>
+            <span onDoubleClick={toggleEditMode}>{props.status || 'User dont have status'}</span>
+          </div>
+          : <div>
+            <input autoFocus={true} onBlur={toggleEditMode}
+                   onChange={onStatusChange}
+                   value={status}/>
+          </div>
+      }
+    </div>
+  );
 }
 
 export default ProfileStatus;

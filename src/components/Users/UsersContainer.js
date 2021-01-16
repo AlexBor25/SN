@@ -5,6 +5,12 @@ import {
   toggleDisabledBtn, unfollow } from "../../redux/users-reducer";
 import React from 'react';
 import Preloader from "../Preloader/Preloader";
+import {
+  getCurrentPageSelector, getDisabledBtnSelector, getIsLoadingSelector,
+  getPageSizeSelector,
+  getTotalUsersCountSelector,
+  getUsersSelector
+} from "../../redux/user-selectors";
 
 class UsersContainer extends React.Component {
 
@@ -34,12 +40,12 @@ class UsersContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isLoading: state.usersPage.isLoading,
-    disabledBtn: state.usersPage.disabledBtn
+    users: getUsersSelector(state),
+    pageSize: getPageSizeSelector(state),
+    totalUsersCount: getTotalUsersCountSelector(state),
+    currentPage: getCurrentPageSelector(state),
+    isLoading: getIsLoadingSelector(state),
+    disabledBtn: getDisabledBtnSelector(state)
   }
 };
 

@@ -17,7 +17,6 @@ const ProfileInfo = (props) => {
         </div>
         <div className={style.info}>
           <div>Name: {props.profile.fullName}</div>
-          {/*<div>Status: {props.profile.lookingForAJobDescription}</div>*/}
         </div>
       </div>
     </div>
