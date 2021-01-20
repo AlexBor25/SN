@@ -67,39 +67,32 @@ export const setUserTotalCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_CO
 export const toggleIsLoading = (isLoading) => ({type: TOGGLE_IS_LOADING, isLoading});
 export const toggleDisabledBtn = (disabledBtn, userId) => ({type: TOGGLE_DISABLED_BTN, disabledBtn, userId});
 
-export const getUsersThunk = (currentPage, pageSize) => {
-  return (dispatch) => {
-    dispatch(toggleIsLoading(true));
-    getUsers(currentPage, pageSize).then(data => {
-      dispatch(toggleIsLoading(false));
-      dispatch(setUsers(data.items));
-      dispatch(setUserTotalCount(data.totalCount));
-    });
-  }
+export const getUsersThunk = (currentPage, pageSize) => async (dispatch) => {
+
+  dispatch(toggleIsLoading(true));
+
+  const response = await getUsers(currentPage, pageSize);
+
+  dispatch(toggleIsLoading(false));
+  dispatch(setUsers(response.data.items));
+  dispatch(setUserTotalCount(response.data.totalCount));
 }
 
-export const follow = (id) => {
-  return (dispatch) => {
-    dispatch(toggleDisabledBtn(true, id));
-    followUser(id).then(data => {
-      if (data.resultCode === 0) {
-        dispatch(followSuccess(id))
-      }
-      dispatch(toggleDisabledBtn(false, id));
-    });
+const toggleFolowing = async (id, dispatch, apiMethod, actionCreator) => {
+  dispatch(toggleDisabledBtn(true, id));
+  const response = await apiMethod(id);
+  if (response.data.resultCode === 0) {
+    dispatch(actionCreator(id))
   }
+  dispatch(toggleDisabledBtn(false, id));
 }
 
-export const unfollow = (id) => {
-  return (dispatch) => {
-    dispatch(toggleDisabledBtn(true, id));
-    unfollowUser(id).then(data => {
-      if (data.resultCode === 0) {
-        dispatch(unfollowSuccess(id))
-      }
-      dispatch(toggleDisabledBtn(false, id));
-    });
-  }
+export const follow = (id) => (dispatch) => {
+  toggleFolowing(id, dispatch, followUser, followSuccess);
+}
+
+export const unfollow = (id) => (dispatch) => {
+  toggleFolowing(id, dispatch, unfollowUser, unfollowSuccess);
 }
 
 export default usersReducer;

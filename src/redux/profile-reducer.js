@@ -56,29 +56,26 @@ export const setStatus = (status) => {
   }
 }
 
-export const getUserProfile = (id) => {
-  return (dispatch) => {
-    setUsers(id).then(data => {
-      dispatch(setUserProfile(data));
-    });
-  }
+export const getUserProfile = (id) => async (dispatch) => {
+
+  const response = await setUsers(id);
+
+  dispatch(setUserProfile(response.data));
 }
 
-export const getStatus = (id) => {
-  return (dispatch) => {
-    getUserStatus(id).then(data => {
-      dispatch(setStatus(data));
-    });
-  }
+export const getStatus = (id) => async (dispatch) => {
+
+  const response = await getUserStatus(id);
+
+  dispatch(setStatus(response.data));
 }
 
-export const updateStatus = (status) => {
-  return (dispatch) => {
-    updateUserStatus(status).then(data => {
-      if(data.resultCode === 0) {
-        dispatch(setStatus(status));
-      }
-    });
+export const updateStatus = (status) => async (dispatch) => {
+
+  const response = await updateUserStatus(status);
+
+  if (response.data.resultCode === 0) {
+    dispatch(setStatus(status));
   }
 }
 

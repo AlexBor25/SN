@@ -9,41 +9,41 @@ const API = axios.create({
 })
 
 export const getUsers = (currentPage, pageSize) => {
-  return API.get(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data);
+  return API.get(`users?page=${currentPage}&count=${pageSize}`);
 };
 
 export const followUser = (id) => {
-  return API.post(`follow/${id}`).then(response => response.data);
+  return API.post(`follow/${id}`);
 };
 
 export const unfollowUser = (id) => {
-  return API.delete(`follow/${id}`).then(response => response.data);
+  return API.delete(`follow/${id}`);
 };
 
 export const auth = () => {
-  return API.get(`auth/me`).then(response => response.data);
+  return API.get(`auth/me`);
 };
 
 export const setUsers = (id) => {
-  return API.get(`profile/${id}`).then(response => response.data);
+  return API.get(`profile/${id}`);
 };
 
 export const getUserStatus = (id) => {
-  return API.get(`profile/status/${id}`).then(response => response.data);
+  return API.get(`profile/status/${id}`);
 };
 
 export const updateUserStatus = (status) => {
   return API.put(`profile/status`, {
     status: status
-  }).then(response => response.data);
+  });
 };
 
 export const signIn = (email, password, rememberMe = false) => {
   return API.post(`auth/login`, {
     email, password, rememberMe
-  }).then(response => response.data);
+  });
 };
 
 export const signOut = () => {
-  return API.delete(`auth/login`).then(response => response.data);
+  return API.delete(`auth/login`);
 };
