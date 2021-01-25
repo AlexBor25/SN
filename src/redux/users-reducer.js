@@ -78,7 +78,7 @@ export const getUsersThunk = (currentPage, pageSize) => async (dispatch) => {
   dispatch(setUserTotalCount(response.data.totalCount));
 }
 
-const toggleFolowing = async (id, dispatch, apiMethod, actionCreator) => {
+const toggleFollowing = async (id, dispatch, apiMethod, actionCreator) => {
   dispatch(toggleDisabledBtn(true, id));
   const response = await apiMethod(id);
   if (response.data.resultCode === 0) {
@@ -88,11 +88,11 @@ const toggleFolowing = async (id, dispatch, apiMethod, actionCreator) => {
 }
 
 export const follow = (id) => (dispatch) => {
-  toggleFolowing(id, dispatch, followUser, followSuccess);
+  toggleFollowing(id, dispatch, followUser, followSuccess);
 }
 
 export const unfollow = (id) => (dispatch) => {
-  toggleFolowing(id, dispatch, unfollowUser, unfollowSuccess);
+  toggleFollowing(id, dispatch, unfollowUser, unfollowSuccess);
 }
 
 export default usersReducer;

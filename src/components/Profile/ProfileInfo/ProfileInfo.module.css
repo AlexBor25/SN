@@ -2,16 +2,28 @@
     display: flex;
 }
 
-.background {
-    width: 100%;
-    height: 300px;
+.photoBlock {
+    padding: 10px;
 }
 
 .photo {
-    padding: 10px;
+    width: 300px;
+    height: 300px;
 }
+
+.contacts {
+    margin-left: 15px;
+}
+
+/*.hover {*/
+/*    display: none;*/
+/*}*/
 
 .info {
     padding: 10px;
     font-size: 30px;
 }
+
+/*.photo:hover .hover {*/
+/*    display: block;*/
+/*}*/

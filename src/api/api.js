@@ -38,12 +38,32 @@ export const updateUserStatus = (status) => {
   });
 };
 
-export const signIn = (email, password, rememberMe = false) => {
+export const signIn = (email, password, rememberMe = false, captcha = null) => {
   return API.post(`auth/login`, {
-    email, password, rememberMe
+    email, password, rememberMe, captcha
   });
 };
 
 export const signOut = () => {
   return API.delete(`auth/login`);
 };
+
+export const savingPhoto = (photo) => {
+
+  const formData = new FormData();
+  formData.append('image', photo)
+
+  return API.put(`profile/photo`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });
+};
+
+export const savingProfile = (profile) => {
+  return API.put(`profile`, profile);
+};
+
+export const getCaptchaUrl = () => {
+  return API.get(`security/get-captcha-url`);
+}
