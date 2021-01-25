@@ -1,6 +1,6 @@
 import './App.css';
 import Nav from "./components/Nav/Nav";
-import {Route} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 import News from "./components/News/News";
 import React from "react";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
@@ -28,20 +28,23 @@ class App extends React.Component {
         <HeaderContainer/>
         <Nav/>
         <div className="app-wrapper-content">
-          <Route path='/login' render={() => <Login/>}/>
-          <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-          <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-          <Route path='/users' render={() => {
-            return <React.Suspense fallback={<Preloader/>}>
-              <UsersContainer/>
-            </React.Suspense>
-          }}/>
-          <Route path='/news' render={News}/>
-          <Route path='/settings' render={() => {
-            return <React.Suspense fallback={<Preloader/>}>
-              <Settings/>
-            </React.Suspense>
-          }}/>
+          <Switch>
+            <Route exact path='/' render={() => <Redirect to={'/profile'}/>}/>
+            <Route path='/login' render={() => <Login/>}/>
+            <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+            <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+            <Route path='/users' render={() => {
+              return <React.Suspense fallback={<Preloader/>}>
+                <UsersContainer/>
+              </React.Suspense>
+            }}/>
+            <Route path='/news' render={News}/>
+            <Route path='/settings' render={() => {
+              return <React.Suspense fallback={<Preloader/>}>
+                <Settings/>
+              </React.Suspense>
+            }}/>
+          </Switch>
         </div>
       </div>
     );
